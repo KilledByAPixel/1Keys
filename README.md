@@ -1,4 +1,4 @@
-# 1Keys 🎹
+# 🎹 1Keys
 A 1 Kilobyte JavaScript Piano
 By Frank Force 2019
 
