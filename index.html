@@ -5,10 +5,11 @@
 // By Frank Force 2020
 // https://github.com/KilledByAPixel/1Keys
 
-C = new AudioContext; // create audio context
-
 // body style
 document.body.style = `background:#112;color:#fff;user-select:none;text-align:center`;
+
+// create audio context
+C = new AudioContext;
 
 // instrument select
 [...`∿🎷🎹`].map((i,j)=>                                  // instrument icons
@@ -17,7 +18,7 @@ document.body.style = `background:#112;color:#fff;user-select:none;text-align:ce
     2 - j}> `);                                            // instrument select
 
 // piano keys
-for( I = i = 0;      // default instrument
+for( I = i = 0;      // int iterator and default instrument
         i < 36;      // 3 x 12 keys
         A = [], i++) // init sounds
         
