@@ -11,7 +11,7 @@ C = new AudioContext; // create audio context
 document.body.style = `background:#112;color:#fff;user-select:none;text-align:center`;
 
 // instrument select
-[...`∿🎷🎹`].map((i,j)=>                                 // instrument icons
+[...`∿🎷🎹`].map((i,j)=>                                  // instrument icons
     document.body.innerHTML += i +                         // icon
         `<input type=radio name=I checked onmousedown=I=${ // radio input
     2 - j}> `);                                            // instrument select
