@@ -17,5 +17,5 @@ Thanks to Rodrigo Siqueira for helping prototype this!
 Some Simple Mod Ideas...
 - Option to change wave shape with oscillator.type
 - Octave and Root Key control
-- More instruments try `456` for a major chord or `23` for a 5th
+- More instruments try 456 for a major chord or 23 for a 5th
 - Show keyboard key letters on piano keys
