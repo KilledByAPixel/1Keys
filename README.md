@@ -2,7 +2,8 @@
 A 1 Kilobyte JavaScript Piano
 By Frank Force 2020
 
-# [LIVE DEMO](https://killedbyapixel.github.io/1Keys/index.min.html)
+# [LIVE DEMO - Enhanced Version](https://killedbyapixel.github.io/1Keys)
+# [LIVE DEMO - 1k Version](https://killedbyapixel.github.io/1Keys/index.min.html)
 
 This three instrument ∿🎷🎹 piano supports play with both keyboard and mouse!
 
