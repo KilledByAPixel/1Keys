@@ -7,7 +7,7 @@ By Frank Force 2020
 
 This three instrument 🎻🎷🎹 piano supports play with both keyboard and mouse!
 
-The keyboard setup mirrors the onscreen piano keyboard and allows playing simultaneous notes.
+The keyboard setup mirrors the onscreen piano keyboard and allows for simultaneous notes.
 
 Keys light up red when played and can be held for any length of time.
 
