@@ -20,10 +20,10 @@ document.body.style = `background:#112;color:#fff;user-select:none;text-align:ce
 C = new AudioContext;
 
 // instrument select
-[...`∿🎷🎹`].map((i,j)=>                                  // instrument icons
+[...`🎻🎷🎹`].map((i,j)=>                                   // instrument icons
     document.body.innerHTML += i +                         // icon
         `<input type=radio name=I checked onmousedown=I=${ // radio input
-    2 - j}> `);                                            // instrument select
+    2 - j}>`);                                             // instrument select
 
 // piano keys
 for( I = i = 0;      // default instrument
@@ -35,7 +35,7 @@ for( I = i = 0;      // default instrument
         }<div id=K${                                                // create key
             24 + i%12 - (i/12|0)*12                                 // reorder keys
         } style=display:inline-block;margin:2;background:${         // key style
-        `02579`.indexOf( i%12 - 1 ) < 0 ?                           // b or w
+        `02579`.indexOf(i%12 - 1) < 0 ?                             // b or w
         `#fff;width:60;height:180` :                                // white
         `#000;position:absolute;margin-left:-17;width:33;height:99` // black
         } onmouseover=event.buttons&&P(${ 24 + i%12 - (i/12|0)*12   // mouse over
@@ -52,8 +52,8 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
 (
     A[i] = [         // instruments
         [...`1248`], // 🎹 organ
-        [...`3579`], // 🎷 sax
-        [3],         // ∿ sine
+        [...`3579`], // 🎷 woodwind
+        [...`132`],  // 🎻 strings
     ][ I ].map(j=>(
         o = C.createOscillator(                // create oscillator
             eval(`K`+i).g = eval(`K`+i).style.background), // save original color 
