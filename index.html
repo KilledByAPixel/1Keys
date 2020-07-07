@@ -1,21 +1,30 @@
-<body><meta charset=utf-8><script>
+<title>1Keys 🎹 A Tiny JavaScript Piano</title>
+<meta charset=utf-8>
+<span id=J style=font-size:20></span>
+<body style=background:#112;color:#fff;user-select:none;text-align:center>
+Octave <input type=number id=O style=width:40 value=0 min=-3 max=3 onkeydown='return false'>&nbsp;
+Key <input type=number id=Y style=width:40 value=0 min=-12 max=12 onkeydown='return false'>&nbsp;
+Shape <select id=S>
+<option>sine</option>
+<option>square</option>
+<option>sawtooth</option>
+<option>triangle</option>
+</select>
+<br><script>
 
 ///////////////////////////////////////////////////////////////////////////////
 // 1Keys - A 1 Kilobyte JavaScript Piano
 // By Frank Force 2020
 // https://github.com/KilledByAPixel/1Keys
 
-// body style
-document.body.style = `background:#112;color:#fff;user-select:none;text-align:center`;
-
 // create audio context
 C = new AudioContext;
 
 // instrument select
-[...`∿🎷🎹`].map((i,j)=>                                  // instrument icons
-    document.body.innerHTML += i +                         // icon
-        `<input type=radio name=I checked onmousedown=I=${ // radio input
-    2 - j}> `);                                            // instrument select
+[...`∿🎻🎷🎹`].map((i,j)=>                              // instrument icons
+    J.innerHTML += i +                                 // icon
+    `<input type=radio name=I checked onmousedown=I=${ // radio input
+    3 - j}> &nbsp;`);                                  // instrument select
 
 // piano keys
 for( I = i = 0;      // int iterator and default instrument
@@ -27,14 +36,14 @@ for( I = i = 0;      // int iterator and default instrument
         }<div id=K${                                                // create key
             k = 24 + i%12 - (i/12|0)*12                             // reorder keys
         } style=display:inline-block;margin:2;background:${         // key style
-        `02579`.indexOf( i%12 - 1 ) < 0 ?                           // b or w
-        `#fff;width:60;height:180` :                                // white
+        `02579`.indexOf(i%12 - 1) < 0 ?                             // b or w
+        `#fff;color:#000;width:60;height:180` :                     // white
         `#000;position:absolute;margin-left:-17;width:33;height:99` // black
         } onmouseover=event.buttons&&P(${ k                         // mouse over
         }) onmousedown=P(${ k                                       // mouse down
         }) onmouseup=X(${ k                                         // mouse up
         }) onmouseout=X(${ k                                        // mouse out
-        })>`;                                                       // end key
+        })>` + 'ZSXDCVGBHNJMQ2W3ER5T6Y7UI9O0P[=]    '[k];           // show key
 
 ///////////////////////////////////////////////////////////////////////////////
 // sound
@@ -50,25 +59,31 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
 
     A[i] = [         // instruments
         [...`1248`], // 🎹 organ
-        [...`3579`], // 🎷 sax
+        [...`3579`], // 🎷 woodwind
+        [...`123`],  // 🎻 strings
         [3],         // ∿ sine
     ][ I ].map(j=>(
-        o = C.createOscillator(),            // create oscillator
-        o.connect(                           // oscillator to gain1
-            g = C.createGain(                // create start gain node
-                o.frequency.value =          // set frequency
-                    j * 55 * 2**((i+3)/12))) // A 55 root noter 
-        .connect(                            // gain1 to gain2
-            o.g = C.createGain())            // create end gain node
-        .connect(C.destination),             // gain2 to destination
-        g.gain.linearRampToValueAtTime(      // set start gain off
-            g.gain.value = 0,                // set gain to 0
-            C.currentTime + .02),            // set start time
-        g.gain.linearRampToValueAtTime(      // set gain start ramp
-            .2/(1+Math.log2(j)),             // scale gain
-            C.currentTime + .05),            // ramp on gain
-        o.start(),                           // play sound
-        o)                                   // return sound
+        o = C.createOscillator(),                 // create oscillator
+        o.connect(                                // oscillator to gain1
+            g = C.createGain(                     // create start gain node
+                o.frequency.value =               // set frequency
+                    j * 55 *                      // A 55 root noter 
+                    2**((i+3)/12                  // music scale formula
+                        + O.value*1               // octave control
+                        + Y.value/12)))           // key control
+        .connect(                                 // gain1 to gain2
+            o.g = C.createGain())                 // create end gain node
+        .connect(C.destination),                  // gain2 to destination
+        g.gain.linearRampToValueAtTime(           // set start gain off
+            g.gain.value = 0,                     // set gain to 0
+            C.currentTime + .02),                 // set start time
+        g.gain.linearRampToValueAtTime(           // set gain start ramp
+            .2/(1+Math.log2(j)),                  // scale gain
+            C.currentTime + .05),                 // ramp on gain
+        o.type =                                  // oscilator type
+            S.options[S.selectedIndex].innerHTML, // get type setting
+        o.start(),                                // play sound
+        o)                                        // return sound
     )
 );
 
