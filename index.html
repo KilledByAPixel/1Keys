@@ -22,18 +22,18 @@ for( I = i = 0;      // default instrument
         A = [], i++) // init sounds
         
     document.body.innerHTML +=
-        `${i%12 ? `` : `<br>`                                      // new row
-        }<div id=K${                                               // create key
-            k = 24 + i%12 - (i/12|0)*12                            // reorder keys
-        } style=display:inline-block;margin:2;background:${        // key style
-        `02579`.indexOf( i%12 - 1 ) < 0 ?                          // b or w
-        `#fff;width:60;height:180` :                               // white
-        `#000;position:absolute;margin-left:-17;width:33;height:99`// black
-        } onmouseover=event.buttons&&P(${ k                        // mouse over
-        }) onmousedown=P(${ k                                      // mouse down
-        }) onmouseup=X(${ k                                        // mouse up
-        }) onmouseout=X(${ k                                       // mouse out
-        })>`;                                                      // end key
+        `${i%12 ? `` : `<br>`                                       // new row
+        }<div id=K${                                                // create key
+            k = 24 + i%12 - (i/12|0)*12                             // reorder keys
+        } style=display:inline-block;margin:2;background:${         // key style
+        `02579`.indexOf( i%12 - 1 ) < 0 ?                           // b or w
+        `#fff;width:60;height:180` :                                // white
+        `#000;position:absolute;margin-left:-17;width:33;height:99` // black
+        } onmouseover=event.buttons&&P(${ k                         // mouse over
+        }) onmousedown=P(${ k                                       // mouse down
+        }) onmouseup=X(${ k                                         // mouse up
+        }) onmouseout=X(${ k                                        // mouse out
+        })>`;                                                       // end key
 
 ///////////////////////////////////////////////////////////////////////////////
 // sound
@@ -51,21 +51,22 @@ P = i=> i < 0 || A[i] || // is note not playing
         [...`3579`], // 🎷 sax
         [3],         // ∿ sine
     ][ I ].map(j=>(
-        o = C.createOscillator(),              // create oscillator
-        o.connect(                             // oscillator to gain1
-            g = C.createGain(                  // create start gain node
-                o.frequency.value =            // set frequency
-                    j * 55 * 2**((i+3)/12)))   // A 55 root noter 
-        .connect(                              // gain1 to gain2
-            o.g = C.createGain())              // create end gain node
-        .connect(C.destination),               // gain2 to destination
-        g.gain.linearRampToValueAtTime(        // set start gain off
-            g.gain.value = 0,                  // set gain to 0
-            C.currentTime + .02),              // set start time
-        g.gain.linearRampToValueAtTime(        // set gain start ramp
-            .2/(1+Math.log2(j)), C.currentTime + .05), // ramp on gain
-        o.start(),                             // play sound
-        o)                                     // return sound
+        o = C.createOscillator(),            // create oscillator
+        o.connect(                           // oscillator to gain1
+            g = C.createGain(                // create start gain node
+                o.frequency.value =          // set frequency
+                    j * 55 * 2**((i+3)/12))) // A 55 root noter 
+        .connect(                            // gain1 to gain2
+            o.g = C.createGain())            // create end gain node
+        .connect(C.destination),             // gain2 to destination
+        g.gain.linearRampToValueAtTime(      // set start gain off
+            g.gain.value = 0,                // set gain to 0
+            C.currentTime + .02),            // set start time
+        g.gain.linearRampToValueAtTime(      // set gain start ramp
+            .2/(1+Math.log2(j)),             // scale gain
+            C.currentTime + .05),            // ramp on gain
+        o.start(),                           // play sound
+        o)                                   // return sound
     )
 );
 
