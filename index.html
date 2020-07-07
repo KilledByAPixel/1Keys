@@ -97,7 +97,7 @@ onblur = e=> A.map((e,i)=> X(i));
 // keyboard key to piano key
 K = i=>
     (k = 'zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]' // map key to note
-    .indexOf(i.key.toLowerCase()),               // find the key and check invalid
+    .indexOf(i.key.toLowerCase()),               // find the key in string
     k - 5 * (k > 16));                           // remap second row of keys
 
 // play note on key down
