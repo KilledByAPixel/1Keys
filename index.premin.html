@@ -48,7 +48,7 @@ for( I = i = 0;      // default instrument
 // sound
 
 // play note
-P = i=> i < 0 || A[i] || // is note not playing
+P = i=> i < 0 || A[i] || // is valid and note not playing
 (
     A[i] = [         // instruments
         [...`1248`], // 🎹 organ
@@ -71,7 +71,7 @@ P = i=> i < 0 || A[i] || // is note not playing
             .2/(1+Math.log2(j)),               // scale gain
             C.currentTime + .05),              // ramp on gain
         o.start(                               // play sound
-            eval(`K`+i).style.transition = eval(`K`+i).innerText), // reset transitions
+            eval(`K`+i).style.transition = eval(`K`+i).innerHTML), // reset transitions
         o)                                     // return sound
     ),
     eval(`K`+i).style.background = `red`       // set key color red

@@ -40,12 +40,13 @@ for( I = i = 0;      // int iterator and default instrument
 // sound
 
 // play note
-P = i=> i < 0 || A[i] || // is note not playing
+P = i=> i < 0 || A[i] || // is valid and note not playing
 (
-    k = eval(`K`+i),                  // get key
-    k.g = k.style.background,         // save original color 
-    k.style.transition = k.innerText, // reset transitions
-    k.style.background = `red`,       // set key color red
+    k = eval(`K`+i),            // get key
+    k.g = k.style.background,   // save original color 
+    k.style.transition = ``,    // unset transition
+    k.style.background = `red`, // set key color red
+    k.innerHTML,                // force reset transition
 
     A[i] = [         // instruments
         [...`1248`], // 🎹 organ
@@ -96,8 +97,8 @@ onblur = e=> A.map((e,i)=> X(i));
 
 // keyboard key to piano key
 K = i=>
-    (k = 'zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]' // map key to note
-    .indexOf(i.key.toLowerCase()),               // find the key in string
+    (k = `zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]` // map key to note
+    .indexOf(i.key.toLowerCase()),               // find key in string
     k - 5 * (k > 16));                           // remap second row of keys
 
 // play note on key down
