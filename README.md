@@ -13,4 +13,4 @@ Keys light up red when played and can be held for any length of time.
 
 Thanks to Rodrigo Siqueira for helping prototype this!
 
-![Screenshot](/screenshot.jpg)
+![Screenshot](/screen.jpg)
