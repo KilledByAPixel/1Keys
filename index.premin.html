@@ -28,6 +28,7 @@ document.body.style = `background:#112;color:#fff;user-select:none;text-align:ce
 for( I = i = 0;      // default instrument
         i < 36;      // 3 x 12 keys
         A = [], i++) // init sounds
+        
     document.body.innerHTML +=
         `${i%12 ? `` : `<br>`                                      // new row
         }<div id=K${                                               // create key
@@ -89,7 +90,7 @@ X = i=> A[i] &&  // is note playing
     );
 
 // stop all sounds if focus lost
-onblur = e=> A.map((e,i)=> X(i))
+onblur = e=> A.map((e,i)=> X(i));
 
 ///////////////////////////////////////////////////////////////////////////////
 // keyboard controls
