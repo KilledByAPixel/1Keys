@@ -1,6 +1,6 @@
 # 🎹 1Keys
 A 1 Kilobyte JavaScript Piano
-By Frank Force 2019
+By Frank Force 2020
 
 # [LIVE DEMO](https://killedbyapixel.github.io/1Keys/index.min.html)
 
