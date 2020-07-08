@@ -17,9 +17,6 @@ Shape <select id=S>
 // By Frank Force 2020
 // https://github.com/KilledByAPixel/1Keys
 
-// create audio context
-C = new AudioContext;
-
 // instrument select
 [...`∿🎻🎷🎹`].map((i,j)=>                           // instrument icons
     J.innerHTML += i +                                 // icon
@@ -36,7 +33,7 @@ for( I = i = 0;      // int iterator and default instrument
         }<div id=K${                                                // create key
             k = 24 + i%12 - (i/12|0)*12                             // reorder keys
         } style=display:inline-block;margin:2;background:${         // key style
-        `02579`.indexOf(i%12 - 1) < 0 ?                             // b or w
+        `02579`.indexOf(i%12 - 1) < 0 ?                             // b or w?
         `#fff;color:#000;width:60;height:180` :                     // white
         `#000;position:absolute;margin-left:-17;width:33;height:99` // black
         } onmouseover=event.buttons&&P(${ k                         // mouse over
@@ -48,8 +45,11 @@ for( I = i = 0;      // int iterator and default instrument
 ///////////////////////////////////////////////////////////////////////////////
 // sound
 
+// create audio context
+C = new AudioContext;
+
 // play note
-P = i=> i < 0 || A[i] || // is valid and note not playing
+P = i=> i < 0 || A[i] || // is valid and note not playing?
 (
     k = eval(`K`+i),            // get key
     k.g = k.style.background,   // save original color 
@@ -67,7 +67,7 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
         o.connect(                                // oscillator to gain1
             g = C.createGain(                     // create start gain node
                 o.frequency.value =               // set frequency
-                    j * 55 *                      // A 55 root noter 
+                    j * 55 *                      // A 55 root note
                     2**((i+3)/12                  // music scale formula
                         + O.value*1               // octave control
                         + Y.value/12)))           // key control
@@ -88,7 +88,7 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
 );
 
 // cancel note
-X = i=> A[i] &&  // is note playing
+X = i=> A[i] &&  // is note playing?
 (
     k = eval(`K`+i),            // get key
     k.style.transition = `.5s`, // set transition

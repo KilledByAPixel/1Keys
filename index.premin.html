@@ -16,9 +16,6 @@
 // body style
 document.body.style = `background:#112;color:#fff;user-select:none;text-align:center`;
 
-// create audio context
-C = new AudioContext;
-
 // instrument select
 [...`🎻🎷🎹`].map((i,j)=>                                 // instrument icons
     document.body.innerHTML += i +                         // icon
@@ -47,6 +44,9 @@ for( I = i = 0;      // default instrument
 ///////////////////////////////////////////////////////////////////////////////
 // sound
 
+// create audio context
+C = new AudioContext;
+
 // play note
 P = i=> i < 0 || A[i] || // is valid and note not playing
 (
@@ -60,7 +60,7 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
         o.connect(                             // oscillator to gain1
             g = C.createGain(                  // create start gain node
                 o.frequency.value =            // set frequency
-                    j * 55 * 2**((i+3)/12)))   // A 55 root noter 
+                    j * 55 * 2**((i+3)/12)))   // A 55 root note 
         .connect(                              // gain1 to gain2
             o.g = C.createGain())              // create end gain node
         .connect(C.destination),               // gain2 to destination
