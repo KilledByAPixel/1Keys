@@ -22,7 +22,7 @@ The enhanced version sounds the same but has a few small bonus features...
 - Key control
 - Wave shape
 - Sine wave instrument
-- Shows keyboard keys on piano
+- Keyboard keys displyed on piano
 
 How big is 1 kilobyte? This big...
 
