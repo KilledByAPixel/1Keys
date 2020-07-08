@@ -13,6 +13,10 @@
 // 5. Replace " with B (or any unused character)
 // 6. Put it in <body onload="">
 
+
+C = new AudioContext; // audio context
+A = [];               // active sounds array
+
 // body style
 document.body.style = `background:#112;color:#fff;user-select:none;text-align:center`;
 
@@ -23,10 +27,8 @@ document.body.style = `background:#112;color:#fff;user-select:none;text-align:ce
     2 - j}>`);                                             // instrument select
 
 // piano keys
-for( I = i = 0;      // default instrument
-        i < 36;      // 3 x 12 keys
-        A = [], i++) // init sounds
-        
+for( I = i = 0; i < 36; i++)      // default instrument, 3 x 12 keys
+
     document.body.innerHTML +=
         `${i%12 ? `` : `<br>`                                       // new row
         }<div id=K${                                                // create key
@@ -43,9 +45,6 @@ for( I = i = 0;      // default instrument
 
 ///////////////////////////////////////////////////////////////////////////////
 // sound
-
-// create audio context
-C = new AudioContext;
 
 // play note
 P = i=> i < 0 || A[i] || // is valid and note not playing

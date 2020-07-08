@@ -13,21 +13,22 @@ Shape <select id=S>
 <br><script>
 
 ///////////////////////////////////////////////////////////////////////////////
-/* 1Keys - A 1 Kilobyte JavaScript Piano - Enhanced Version
+/* 1Keys 🎹 A 1 Kilobyte JavaScript Piano - Enhanced Version
 
 By Frank Force 2020
 https://github.com/KilledByAPixel/1Keys
 
-Globals
-A = active notes
-C = audio context
-K# = piano keys
-I = instrument type
-J = instrument area
-O = octave input
-Y = key input
-S = wave shape
+Globals...
+    K# = piano keys
+    J = instrument div
+    O = octave input
+    Y = key input
+    S = wave shape
 */
+
+C = new AudioContext; // audio context
+A = [];               // active sounds array
+I = 0;                // instrument type
 
 // instrument select
 [...`∿🎻🎷🎹`].map((i,j)=>                           // instrument icons
@@ -36,9 +37,7 @@ S = wave shape
     3 - j}> &nbsp;`);                                  // instrument select
 
 // piano keys
-for( I = i = 0;      // int iterator and default instrument
-        i < 36;      // 3 x 12 keys
-        A = [], i++) // init sounds
+for( i = 0; i < 36; i++)      // 3 x 12 keys
         
     document.body.innerHTML +=
         `${i%12 ? `` : `<br>`                                       // new row
@@ -56,9 +55,6 @@ for( I = i = 0;      // int iterator and default instrument
 
 ///////////////////////////////////////////////////////////////////////////////
 // sound
-
-// create audio context
-C = new AudioContext;
 
 // play note
 P = i=> i < 0 || A[i] || // is valid and note not playing?
