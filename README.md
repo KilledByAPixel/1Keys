@@ -7,7 +7,7 @@ By Frank Force 2020
 
 # 🎻🎷🎹
 
-This three instrument piano supports play with both keyboard and mouse!
+This tiny three instrument piano supports play with both keyboard and mouse!
 
 The keyboard setup mirrors the onscreen piano keyboard and allows for simultaneous notes.
 
