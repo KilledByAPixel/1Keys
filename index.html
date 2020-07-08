@@ -1,7 +1,7 @@
 <title>1Keys 🎹 Tiny JS Piano</title>
 <meta charset=utf-8>
-<span id=J style=font-size:20></span>
 <body style=background:#112;color:#fff;user-select:none;text-align:center>
+<span id=J style=font-size:20></span>
 Octave <input type=number id=O style=width:40 value=0 min=-3 max=3 onkeydown='return false'>&nbsp;
 Key <input type=number id=Y style=width:40 value=0 min=-12 max=12 onkeydown='return false'>&nbsp;
 Shape <select id=S>
@@ -20,14 +20,14 @@ https://github.com/KilledByAPixel/1Keys
 
 Globals...
     K# = piano keys
-    J = instrument div
+    J = instruments div
     O = octave input
     Y = key input
     S = wave shape
 */
 
 C = new AudioContext; // audio context
-A = [];               // active sounds array
+A = [];               // active sounds
 I = 0;                // instrument type
 
 // instrument select
@@ -37,7 +37,7 @@ I = 0;                // instrument type
     3 - j}> &nbsp;`);                                  // instrument select
 
 // piano keys
-for( i = 0; i < 36; i++)      // 3 x 12 keys
+for( i = 0; i < 36; i++) // 3 x 12 keys
         
     document.body.innerHTML +=
         `${i%12 ? `` : `<br>`                                       // new row
