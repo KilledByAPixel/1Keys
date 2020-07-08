@@ -22,8 +22,7 @@ This tiny three instrument piano supports play with both keyboard and mouse!
 ![Screenshot](/screen.jpg)
 
 The enhanced version sounds the same but has a few small bonus features...
-- Octave control
-- Key control
+- Octave asnd Key control
 - Wave shape
 - Sine wave instrument
 - Keyboard keys displyed on piano
