@@ -13,9 +13,21 @@ Shape <select id=S>
 <br><script>
 
 ///////////////////////////////////////////////////////////////////////////////
-// 1Keys - A 1 Kilobyte JavaScript Piano - Enhanced Version
-// By Frank Force 2020
-// https://github.com/KilledByAPixel/1Keys
+/* 1Keys - A 1 Kilobyte JavaScript Piano - Enhanced Version
+
+By Frank Force 2020
+https://github.com/KilledByAPixel/1Keys
+
+Globals
+A = active notes
+C = audio context
+K# = piano keys
+I = instrument type
+J = instrument area
+O = octave input
+Y = key input
+S = wave shape
+*/
 
 // instrument select
 [...`∿🎻🎷🎹`].map((i,j)=>                           // instrument icons
@@ -40,7 +52,7 @@ for( I = i = 0;      // int iterator and default instrument
         }) onmousedown=P(${ k                                       // mouse down
         }) onmouseup=X(${ k                                         // mouse up
         }) onmouseout=X(${ k                                        // mouse out
-        })>` + 'ZSXDCVGBHNJMQ2W3ER5T6Y7UI9O0P[=]    '[k];           // show key
+        })>` + `ZSXDCVGBHNJMQ2W3ER5T6Y7UI9O0P[=]    `[k];           // show key
 
 ///////////////////////////////////////////////////////////////////////////////
 // sound
@@ -111,15 +123,15 @@ onblur = e=> A.map((e,i)=> X(i));
 // keyboard controls
 
 // keyboard key to piano key
-K = i=>
+T = i=>
     (k = `zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]` // map key to note
     .indexOf(i.key.toLowerCase()),               // find key in string
     k - 5 * (k > 16));                           // remap second row of keys
 
 // play note on key down
-onkeydown = i=> P(K(i));
+onkeydown = i=> P(T(i));
 
 // release note on key up
-onkeyup = i=> X(K(i));
+onkeyup = i=> X(T(i));
 
 </script>
