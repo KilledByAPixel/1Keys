@@ -44,14 +44,15 @@ for( i = 0; i < 36; i++) // 3 x 12 keys
         }<div id=K${                                                // create key
             k = 24 + i%12 - (i/12|0)*12                             // reorder keys
         } style=display:inline-block;margin:2;background:${         // key style
-        `02579`.indexOf(i%12 - 1) < 0 ?                             // b or w?
+        (w = `02579`.indexOf(i%12 - 1) < 0) ?                       // b or w?
         `#fff;color:#000;width:60;height:180` :                     // white
         `#000;position:absolute;margin-left:-17;width:33;height:99` // black
         } onmouseover=event.buttons&&P(${ k                         // mouse over
         }) onmousedown=P(${ k                                       // mouse down
         }) onmouseup=X(${ k                                         // mouse up
         }) onmouseout=X(${ k                                        // mouse out
-        })>` + `ZSXDCVGBHNJMQ2W3ER5T6Y7UI9O0P[=]    `[k];           // show key
+        })>` + (w ? `<br>` : ``) +                                  // lower white keys
+        `ZSXDCVGBHNJMQ2W3ER5T6Y7UI9O0P[=]    `[k];                  // show key
 
 ///////////////////////////////////////////////////////////////////////////////
 // sound
