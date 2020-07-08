@@ -9,11 +9,15 @@ By Frank Force 2020
 
 This tiny three instrument piano supports play with both keyboard and mouse!
 
-The keyboard setup mirrors the onscreen piano keyboard and allows for simultaneous notes.
+## Features
 
-Keys light up red when played and can be held for any length of time.
-
-Thanks to Rodrigo Siqueira for helping prototype this!
+- Three different instrument sounds
+- Keyboard and mouse support
+- Multiple notes can be played independently
+- Notes can be held for any length of time
+- Keys light up red when played
+- Sounds stop if focus is lost
+- Sounds ramp on and off to eliminate pops
 
 ![Screenshot](/screen.jpg)
 
@@ -23,6 +27,8 @@ The enhanced version sounds the same but has a few small bonus features...
 - Wave shape
 - Sine wave instrument
 - Keyboard keys displyed on piano
+
+Thanks to Rodrigo Siqueira for helping prototype.
 
 How big is 1 kilobyte? This big...
 
