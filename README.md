@@ -15,14 +15,14 @@ Keys light up red when played and can be held for any length of time.
 
 Thanks to Rodrigo Siqueira for helping prototype this!
 
+![Screenshot](/screen.jpg)
+
 The enhanced version sounds the same but has a few small bonus features...
 - Octave control
 - Key control
 - Wave shape
 - Sine wave instrument
 - Shows keyboard keys on piano
-
-![Screenshot](/screen.jpg)
 
 How big is 1 kilobyte? This big...
 
