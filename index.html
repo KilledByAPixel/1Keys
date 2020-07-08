@@ -1,7 +1,7 @@
 <title>1Keys 🎹 Tiny JS Piano</title>
 <meta charset=utf-8>
 <body style=background:#112;color:#fff;user-select:none;text-align:center>
-<span id=J style=font-size:20></span>
+<span id=K style=font-size:20></span>
 Octave <input type=number id=O style=width:40 value=0 min=-3 max=3 onkeydown='return false'>&nbsp;
 Key <input type=number id=Y style=width:40 value=0 min=-12 max=12 onkeydown='return false'>&nbsp;
 Shape <select id=S>
@@ -20,7 +20,7 @@ https://github.com/KilledByAPixel/1Keys
 
 Globals...
     K# = piano keys
-    J = instruments div
+    K = instruments div
     O = octave input
     Y = key input
     S = wave shape
@@ -32,7 +32,7 @@ I = 0;                // instrument type
 
 // instrument select
 [...`∿🎻🎷🎹`].map((i,j)=>                           // instrument icons
-    J.innerHTML += i +                                 // icon
+    K.innerHTML += i +                                 // icon
     `<input type=radio name=I checked onmousedown=I=${ // radio input
     3 - j}> &nbsp;`);                                  // instrument select
 
