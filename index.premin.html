@@ -1,4 +1,4 @@
-<body><meta charset=utf-8><script>
+<body id=B><meta charset=utf-8><script>
 
 ///////////////////////////////////////////////////////////////////////////////
 // 1Keys - A 1 Kilobyte JavaScript Piano
@@ -10,26 +10,25 @@
 // 2. Remove white space, Terser recommended
 // 3. Replace " with `
 // 4. Regpack
-// 5. Replace " with B (or any unused character)
+// 5. Replace " with Q (or any unused character)
 // 6. Put it in <body onload="">
-
 
 C = new AudioContext; // audio context
 A = [];               // active sounds array
 
 // body style
-document.body.style = `background:#112;color:#fff;user-select:none;text-align:center`;
+B.style = `background:#112;color:#fff;user-select:none;text-align:center`;
 
 // instrument select
 [...`🎻🎷🎹`].map((i,j)=>                                 // instrument icons
-    document.body.innerHTML += i +                         // icon
+    B.innerHTML += i +                         // icon
         `<input type=radio name=I checked onmousedown=I=${ // radio input
     2 - j}>`);                                             // instrument select
 
 // piano keys
 for( I = i = 0; i < 36; i++) // default instrument, 3 x 12 keys
 
-    document.body.innerHTML +=
+    B.innerHTML +=
         `${i%12 ? `` : `<br>`                                       // new row
         }<div id=K${                                                // create key
             24 + i%12 - (i/12|0)*12                                 // reorder keys
