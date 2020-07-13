@@ -55,7 +55,7 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
         [...`4`],    // ∿ sine
     ][ I ].map(j=>(
         o = C.createOscillator(                // create oscillator
-            eval(`K`+i).g = eval(`K`+i).style.background), // save original color 
+            eval`K${i}`.g = eval`K${i}`.style.background), // save original color 
         o.connect(                             // oscillator to gain1
             g = C.createGain(                  // create start gain node
                 o.frequency.value =            // set frequency
@@ -70,10 +70,10 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
             .2/(1+Math.log2(j)),               // scale gain
             C.currentTime + .05),              // ramp on gain
         o.start(                               // play sound
-            eval(`K`+i).style.transition = eval(`K`+i).innerHTML), // reset transitions
+            eval`K${i}`.style.transition = eval`K${i}`.innerHTML), // reset transitions
         o)                                     // return sound
     ),
-    eval(`K`+i).style.background = `red`       // set key color red
+    eval`K${i}`.style.background = `red`       // set key color red
 );
 
 // cancel note
@@ -82,8 +82,8 @@ X = i=> A[i] &&  // is note playing
         setTimeout(e=>j.stop(), 350,                         // stop sound after delay
             j.g.gain.linearRampToValueAtTime(                // set full gain
             1, C.currentTime + .02,                          // wait a split second
-                eval(`K`+i).style.transition = `.5s`,        // set transition
-                eval(`K`+i).style.background = eval(`K`+i).g // reset original color
+                eval`K${i}`.style.transition = `.5s`,        // set transition
+                eval`K${i}`.style.background = eval`K${i}`.g // reset original color
             ),                 
             j.g.gain.linearRampToValueAtTime(                // ramp gain off
                 A[i] = 0, C.currentTime + .3)                // clear note  

@@ -32,8 +32,8 @@ I = 0;                // instrument type
 
 // instrument select
 [...`∿🎻🎷🎹`].map((i,j)=>                           // instrument icons
-    K.innerHTML += i +                                 // icon
-    `<input type=radio name=I checked onmousedown=I=${ // radio input
+    K.innerHTML += `<big>${i                           // icon
+    }<input type=radio name=I checked onmousedown=I=${ // radio input
     3 - j}> &nbsp;`);                                  // instrument select
 
 // piano keys
