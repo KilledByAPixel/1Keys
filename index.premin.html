@@ -20,10 +20,10 @@ A = [];               // active sounds array
 B.style = `background:#112;color:#fff;user-select:none;text-align:center`;
 
 // instrument select
-[...`🎻🎷🎹`].map((i,j)=>                                 // instrument icons
-    B.innerHTML += i +                         // icon
+[...`∿🎻🎷🎹`].map((i,j)=>                               // instrument icons
+    B.innerHTML += i +                                     // icon
         `<input type=radio name=I checked onmousedown=I=${ // radio input
-    2 - j}>`);                                             // instrument select
+    3 - j}>`);                                             // instrument select
 
 // piano keys
 for( I = i = 0; i < 36; i++) // default instrument, 3 x 12 keys
@@ -52,6 +52,7 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
         [...`1248`], // 🎹 organ
         [...`3579`], // 🎷 brass
         [...`132`],  // 🎻 strings
+        [...`4`],    // ∿ sine
     ][ I ].map(j=>(
         o = C.createOscillator(                // create oscillator
             eval(`K`+i).g = eval(`K`+i).style.background), // save original color 
