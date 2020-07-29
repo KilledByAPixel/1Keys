@@ -28,9 +28,6 @@ D = i=> eval(`K` + i);
         `<input type=radio name=I checked onmousedown=I=${ // radio input
     3 - j}> `);                                            // instrument select
 
-// keyboard to piano key mapping
-K = `zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]`;
-
 // piano keys
 for( I = i = 0; i < 36; A = []) // 3 x 12 keys, init instrument and sounds array
 
@@ -94,6 +91,8 @@ onblur = i=> A.map((e,i)=> X(i));
 ///////////////////////////////////////////////////////////////////////////////
 // keyboard controls
 
+// keyboard to piano key mapping
+K = `zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]`;
 
 // play note on key down
 onkeydown = i=> P(
