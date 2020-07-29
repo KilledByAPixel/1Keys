@@ -9,15 +9,18 @@
 // 1. This file has some tweaks to help with compression
 // 2. Remove white space, Terser recommended
 // 3. Replace " with `
-// 4. Regpack
+// 4. Regpack, set exception for variable B
 // 5. Replace " with Q (or any unused character)
 // 6. Put it in <body onload="">
 
-C = new AudioContext; // audio context
-A = [];               // active sounds array
-
 // body style
 B.style = `background:#112;color:#fff;user-select:none;text-align:center`;
+
+// audio context
+C = new AudioContext;
+
+// get piano key div
+D = i=> eval(`K` + i);
 
 // instrument select
 [...`∿🎻🎷🎹`].map((i,j)=>                               // instrument icons
@@ -25,22 +28,25 @@ B.style = `background:#112;color:#fff;user-select:none;text-align:center`;
         `<input type=radio name=I checked onmousedown=I=${ // radio input
     3 - j}> `);                                            // instrument select
 
+// keyboard to piano key mapping
+K = `zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]`;
+
 // piano keys
-for( I = i = 0; i < 36; i++) // default instrument, 3 x 12 keys
+for( I = i = 0; i < 36; A = []) // 3 x 12 keys, init instrument and sounds array
 
     B.innerHTML +=
         `${i%12 ? `` : `<br>`                                       // new row
         }<div id=K${                                                // create key
-            24 + i%12 - (i/12|0)*12                                 // reorder keys
+            k = 24 + i%12 - (i/12|0)*12                             // reorder keys
         } style=display:inline-block;margin:2;background:${         // key style
-        `02579`.indexOf(i%12 - 1) < 0 ?                             // b or w
-        `#fff;width:60;height:180` :                                // white
+        `02579`.indexOf(i++%12 - 1) < 0 ?                           // b or w
+        `#fff;color:#000;width:60;height:180` :                     // white
         `#000;position:absolute;margin-left:-17;width:33;height:99` // black
-        } onmouseover=event.buttons&&P(${ 24 + i%12 - (i/12|0)*12   // mouse over
-        }) onmousedown=P(${ 24 + i%12 - (i/12|0)*12                 // mouse down
-        }) onmouseup=X(${ 24 + i%12 - (i/12|0)*12                   // mouse up
-        }) onmouseout=X(${ 24 + i%12 - (i/12|0)*12                  // mouse out
-        })>`;                                                       // end key
+        } onmouseover=event.buttons&&P(${ k                         // mouse over
+        }) onmousedown=P(${ k                                       // mouse down
+        }) onmouseup=X(${ k                                         // mouse up
+        }) onmouseout=X(${ k                                        // mouse out
+        })>`,                                                       // end key div
 
 ///////////////////////////////////////////////////////////////////////////////
 // sound
@@ -51,65 +57,54 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
     A[i] = [         // instruments
         [...`1248`], // 🎹 organ
         [...`3579`], // 🎷 brass
-        [...`132`],  // 🎻 strings
-        [...`4`],    // ∿ sine
+        [...`321`],  // 🎻 strings
+        [...`3`],    // ∿ sine
     ][ I ].map(j=>(
-        o = C.createOscillator(                // create oscillator
-            eval(`K`+i).g = eval(`K`+i).style.background), // save original color 
-        o.connect(                             // oscillator to gain1
-            g = C.createGain(                  // create start gain node
-                o.frequency.value =            // set frequency
-                    j * 55 * 2**((i+3)/12)))   // A 55 root note 
-        .connect(                              // gain1 to gain2
-            o.g = C.createGain())              // create end gain node
-        .connect(C.destination),               // gain2 to destination
-        g.gain.linearRampToValueAtTime(        // set start gain off
-            g.gain.value = 0,                  // set gain to 0
-            C.currentTime + .02),              // set start time
-        g.gain.linearRampToValueAtTime(        // set gain start ramp
-            .2/(1+Math.log2(j)),               // scale gain
-            C.currentTime + .05),              // ramp on gain
-        o.start(                               // play sound
-            eval(`K`+i).style.transition = eval(`K`+i).innerHTML), // reset transitions
-        o)                                     // return sound
+        o = C.createOscillator(               // create oscillator
+            D(i).style.transition = 
+                D(i).innerHTML),              // reset transition
+        o.connect(                            // oscillator to gain
+            o.g = C.createGain(               // create gain node
+                o.frequency.value =           // set frequency
+                    j * 55 * 2**((i+3)/12)))  // A 55 root note 
+        .connect(C.destination),              // gain to destination
+        o.g.gain.value = .2/(1+Math.log2(j)), // set gain
+        o.start(),                            // start audio
+        o)                                    // return sound
     ),
-    eval(`K`+i).style.background = `red`       // set key color red
+    D(i).b = D(i).style.background, // save original color 
+    D(i).style.background = `#f00`  // set key color red
 );
 
 // cancel note
-X = i=> A[i] &&  // is note playing
-    A[i].map(j=>
-        setTimeout(e=>j.stop(), 350,                         // stop sound after delay
-            j.g.gain.linearRampToValueAtTime(                // set full gain
-            1, C.currentTime + .02,                          // wait a split second
-                eval(`K`+i).style.transition = `.5s`,        // set transition
-                eval(`K`+i).style.background = eval(`K`+i).g // reset original color
-            ),                 
-            j.g.gain.linearRampToValueAtTime(                // ramp gain off
-                A[i] = 0, C.currentTime + .3)                // clear note  
+X = i=> A[i].map(o=>
+        setTimeout(i=>o.stop(), 350,            // stop sound after delay
+            o.g.gain.linearRampToValueAtTime(   // set gain start ramp
+                o.g.gain.value, C.currentTime), // set gain
+            o.g.gain.linearRampToValueAtTime(   // ramp off gain
+                A[i] = 0, C.currentTime + .3),  // clear note  
+            D(i).style.transition = `.5s`,      // set transition
+            D(i).style.background = D(i).b      // reset original color
         )
     );
 
 // stop all sounds if focus lost
-onblur = e=> A.map((e,i)=> X(i));
+onblur = i=> A.map((e,i)=> X(i));
 
 ///////////////////////////////////////////////////////////////////////////////
 // keyboard controls
 
+
 // play note on key down
 onkeydown = i=> P(
-   `zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]`              // map key to note
-        .indexOf(i.key.toLowerCase())                   // find key in string
-         - 5 * (`zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]` // map again
-            .indexOf(i.key.toLowerCase()) > 16)         // overlap 2nd row of keys
+    K.indexOf(i.key.toLowerCase())                  // map key to note
+        - 5 * (K.indexOf(i.key.toLowerCase()) > 16) // overlap 2nd row of keys
 );
 
 // release note on key up
 onkeyup = i=> X(
-   `zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]`              // map key to note
-        .indexOf(i.key.toLowerCase())                   // find key in string
-         - 5 * (`zsxdcvgbhnjm,l.;/q2w3er5t6y7ui9o0p[=]` // map again
-            .indexOf(i.key.toLowerCase()) > 16)         // overlap 2nd row of keys
+    K.indexOf(i.key.toLowerCase())                  // map key to note
+        - 5 * (K.indexOf(i.key.toLowerCase()) > 16) // overlap 2nd row of keys
 );
 
 </script>
