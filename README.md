@@ -4,6 +4,7 @@ By Frank Force 2020
 
 # [LIVE DEMO - Enhanced Version](https://killedbyapixel.github.io/1Keys)
 # [LIVE DEMO - 1k Version](https://killedbyapixel.github.io/1Keys/index.min.html)
+# [POSTMORTEM - Code Explanation](https://frankforce.com/?p=7617)
 
 # 🎹🎷🎻
 
