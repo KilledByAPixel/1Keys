@@ -49,7 +49,7 @@ for( I = i = 0; i < 36; A = []) // 3 x 12 keys, init instrument and sounds array
 // sound
 
 // play note
-P = i=> i < 0 || A[i] || // is valid and note not playing
+P = i=> i < 0 || A[i] || // is valid and note not playing?
 (
     A[i] = [         // instruments
         [...`1248`], // 🎹 organ
@@ -74,16 +74,15 @@ P = i=> i < 0 || A[i] || // is valid and note not playing
 );
 
 // cancel note
-X = i=> A[i].map(o=>
+X = i=> A[i] &&                                 // is already playing?
+    A[i].map(o=>
         setTimeout(i=>o.stop(), 350,            // stop sound after delay
             o.g.gain.linearRampToValueAtTime(   // set gain start ramp
                 o.g.gain.value, C.currentTime), // set gain
             o.g.gain.linearRampToValueAtTime(   // ramp off gain
                 A[i] = 0, C.currentTime + .3),  // clear note  
             D(i).style.transition = `.5s`,      // set transition
-            D(i).style.background = D(i).b      // reset original color
-        )
-    );
+            D(i).style.background = D(i).b));   // reset original color
 
 // stop all sounds if focus lost
 onblur = i=> A.map((e,i)=> X(i));
