@@ -31,10 +31,10 @@ A = [];               // active sounds
 I = 0;                // instrument type
 
 // instrument select
-[...`∿🎻🎷🎹`].map((i,j)=>                           // instrument icons
-    K.innerHTML += `${i                                // icon
-    }<input type=radio name=I checked onmousedown=I=${ // radio input
-    3 - j}> &nbsp;`);                                  // instrument select
+[...`∿🎻🎷🎹`].map((i,j)=>                          // instrument icons
+    K.innerHTML += `${i                            // icon
+    }<input type=radio name=I checked onclick=I=${ // radio input
+    3 - j}> &nbsp;`);                              // instrument select
 
 // piano keys
 for( i = 0; i < 36; i++) // 3 x 12 keys
