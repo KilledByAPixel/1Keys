@@ -6,13 +6,13 @@ By Frank Force 2020
 # [LIVE DEMO - 1k Version](https://killedbyapixel.github.io/1Keys/index.min.html)
 # [POSTMORTEM - Code Explanation](https://frankforce.com/?p=7617)
 
-# 🎹🎷🎻
+# 🎹🎷🎻∿
 
 This tiny three instrument piano supports play with both keyboard and mouse!
 
 ## Features
 
-- Three different instrument sounds
+- Four different instrument sounds
 - Keyboard and mouse support
 - Multiple notes can be played independently
 - Notes can be held for any length of time
@@ -24,7 +24,6 @@ This tiny three instrument piano supports play with both keyboard and mouse!
 
 The enhanced version sounds the same but has a few small bonus features...
 - Octave and Key control
-- Wave shape
 - Keyboard keys displyed on piano
 
 Thanks to Rodrigo Siqueira for helping prototype.
