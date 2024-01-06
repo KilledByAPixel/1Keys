@@ -20,7 +20,7 @@ This tiny three instrument piano supports play with both keyboard and mouse!
 - Keys light up red when played
 - Sounds stop if focus is lost
 
-![Screenshot](/screen.jpg)
+[![Screenshot](/screen.jpg)](https://killedbyapixel.github.io/1Keys/)
 
 The enhanced version sounds the same but has a few small bonus features...
 - Octave and Key control
